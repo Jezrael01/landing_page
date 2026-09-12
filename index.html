@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jezrael Tovar | Ingeniero de Sistemas & Desarrollador Web</title>
+  <meta name="description" content="Portafolio profesional de Jezrael Tovar — Estudiante de Ingeniería de Sistemas, Desarrollador Web y Especialista en Optimización de Procesos." />
+  <meta name="theme-color" content="#0a0a1a" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dark: { 900: '#0a0a1a', 800: '#0f0f2a', 700: '#161638', 600: '#1e1e4a' },
+            neon: { cyan: '#00f0ff', violet: '#8b5cf6', blue: '#3b82f6' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+          },
+          animation: {
+            'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'gradient-shift': 'gradient-shift 8s ease infinite',
+            'bar-fill': 'bar-fill 1.5s ease-out forwards',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- AOS - Animate On Scroll -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="bg-dark-900 text-gray-200 font-sans antialiased overflow-x-hidden">
+  <!-- ═══════════════════════════════════════════════════════════════
+       CANVAS PARTICLES BACKGROUND
+  ═══════════════════════════════════════════════════════════════ -->
+  <canvas id="particles-canvas" class="fixed inset-0 z-0 pointer-events-none"></canvas>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       NAVIGATION BAR
+  ═══════════════════════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-2 group">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-neon-cyan to-neon-violet flex items-center justify-center font-bold text-dark-900 text-lg group-hover:shadow-[0_0_20px_rgba(0,240,255,0.5)] transition-shadow duration-300">
+            JT
+          </div>
+          <span class="font-bold text-lg hidden sm:block">
+            <span class="text-white">Jezrael</span><span class="text-neon-cyan">.</span><span class="text-gray-400">dev</span>
+          </span>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-1">
+          <a href="#about" class="nav-link">Sobre Mí</a>
+          <a href="#projects" class="nav-link">Proyectos</a>
+          <a href="#skills" class="nav-link">Habilidades</a>
+          <a href="#experience" class="nav-link">Experiencia</a>
+          <a href="#contact" class="nav-link">Contacto</a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" class="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg glass-card" aria-label="Abrir menú">
+          <div class="hamburger-lines">
+            <span></span><span></span><span></span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden mobile-menu-closed">
+      <div class="glass-card mx-4 mb-4 rounded-2xl p-6 flex flex-col gap-3 border border-white/10">
+        <a href="#about" class="mobile-nav-link">Sobre Mí</a>
+        <a href="#projects" class="mobile-nav-link">Proyectos</a>
+        <a href="#skills" class="mobile-nav-link">Habilidades</a>
+        <a href="#experience" class="mobile-nav-link">Experiencia</a>
+        <a href="#contact" class="mobile-nav-link">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ═══════════════════════════════════════════════════════════════
+         HERO SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section id="hero" class="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
+      <!-- Gradient Orbs -->
+      <div class="absolute top-1/4 -left-32 w-96 h-96 bg-neon-cyan/10 rounded-full blur-[128px] animate-float"></div>
+      <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-neon-violet/10 rounded-full blur-[128px] animate-float" style="animation-delay: -3s;"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <!-- Left: Text Content -->
+          <div class="order-2 lg:order-1 text-center lg:text-left">
+            <div data-aos="fade-up" data-aos-delay="100">
+              <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-medium tracking-wider text-neon-cyan border border-neon-cyan/30 bg-neon-cyan/5 mb-6">
+                <span class="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></span>
+                <span id="dynamic-greeting">Disponible para proyectos</span>
+              </span>
+            </div>
+
+            <h1 data-aos="fade-up" data-aos-delay="200" class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] tracking-tight mb-6">
+              <span class="text-white">Jezrael</span><br />
+              <span class="bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-violet bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_200%]">
+                Tovar
+              </span>
+            </h1>
+
+            <p data-aos="fade-up" data-aos-delay="300" class="text-base sm:text-lg text-gray-400 leading-relaxed mb-4 max-w-xl mx-auto lg:mx-0">
+              <span class="text-white font-semibold">Estudiante de 9no Semestre de Ingeniería de Sistemas</span>
+              <br />Desarrollador Web & Especialista en Optimización de Procesos
+            </p>
+
+            <p data-aos="fade-up" data-aos-delay="400" class="text-sm sm:text-base text-gray-500 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+              Transformo problemas complejos en soluciones digitales eficientes. Automatizo sistemas, desarrollo aplicaciones web y optimizo flujos de trabajo empresariales con tecnología de vanguardia.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div data-aos="fade-up" data-aos-delay="500" class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a href="CV JEZRAEL_TOVAR.PDF" download class="btn-primary group">
+                <i data-lucide="download" class="w-5 h-5"></i>
+                <span>Descargar CV</span>
+                <div class="btn-shine"></div>
+              </a>
+              <a href="https://wa.me/584243317523?text=Hola%20Jezrael%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" rel="noopener" class="btn-secondary group">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span>Contactar por WhatsApp</span>
+              </a>
+            </div>
+
+            <!-- Quick Stats -->
+            <div data-aos="fade-up" data-aos-delay="600" class="flex flex-wrap justify-center lg:justify-start gap-6 mt-10 pt-8 border-t border-white/5">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-white counter" data-target="4">0</div>
+                <div class="text-xs text-gray-500 uppercase tracking-wider mt-1">Años Exp.</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-white counter" data-target="10">0</div>
+                <div class="text-xs text-gray-500 uppercase tracking-wider mt-1">Proyectos</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-white counter" data-target="9">0</div>
+                <div class="text-xs text-gray-500 uppercase tracking-wider mt-1">Semestre</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Profile Card -->
+          <div class="order-1 lg:order-2 flex justify-center" data-aos="fade-left" data-aos-delay="300">
+            <div class="profile-card relative w-72 sm:w-80 md:w-96">
+              <!-- Glow Ring -->
+              <div class="absolute -inset-1 rounded-3xl bg-gradient-to-br from-neon-cyan via-neon-violet to-neon-cyan opacity-30 blur-xl animate-glow-pulse"></div>
+
+              <div class="relative glass-card rounded-3xl p-6 sm:p-8 border border-white/10 overflow-hidden">
+                <!-- Decorative Grid -->
+                <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px); background-size: 20px 20px;"></div>
+
+                <!-- Profile Image -->
+                <div class="relative mx-auto w-36 h-36 sm:w-44 sm:h-44 mb-6">
+                  <div class="absolute inset-0 rounded-full bg-gradient-to-br from-neon-cyan to-neon-violet animate-spin-slow"></div>
+                  <div class="absolute inset-[3px] rounded-full bg-dark-800 overflow-hidden">
+                    <!-- Photo placeholder: replace src with actual photo -->
+                    <div class="w-full h-full bg-gradient-to-br from-dark-700 to-dark-900 flex items-center justify-center">
+                      <span class="text-5xl sm:text-6xl font-black bg-gradient-to-br from-neon-cyan to-neon-violet bg-clip-text text-transparent"><img src="Jezrael Tovar.png" alt="Jezrael Tovar" class="w-full h-full object-cover"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card Info -->
+                <div class="relative text-center">
+                  <h2 class="text-xl font-bold text-white mb-1">Jezrael Tovar</h2>
+                  <p class="text-sm text-neon-cyan font-mono mb-4">Systems Engineer Student</p>
+
+                  <!-- Status Badges -->
+                  <div class="flex flex-wrap justify-center gap-2 mb-6">
+                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20">Full Stack</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-neon-violet/10 text-neon-violet border border-neon-violet/20">Automatización</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-neon-blue/10 text-neon-blue border border-neon-blue/20">Soporte IT</span>
+                  </div>
+
+                  <!-- Mini Social Links -->
+                  <div class="flex justify-center gap-3">
+                    <a href="https://github.com/jezrael" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-gray-400 hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300 border border-transparent">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com/in/jezrael-tovar" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-gray-400 hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300 border border-transparent">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="mailto:Jezrael1224@gmail.com" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-gray-400 hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300 border border-transparent">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Decorative Corner Accents -->
+                <div class="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-neon-cyan/30 rounded-tr-lg"></div>
+                <div class="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-neon-violet/30 rounded-bl-lg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+        <span class="text-xs text-gray-500 uppercase tracking-widest">Scroll</span>
+        <div class="w-6 h-10 rounded-full border-2 border-gray-600 flex justify-center pt-2">
+          <div class="w-1.5 h-3 rounded-full bg-neon-cyan animate-bounce"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ABOUT SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section id="about" class="relative py-24 sm:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <span class="inline-block px-4 py-1.5 rounded-full text-xs font-mono font-medium tracking-wider text-neon-violet border border-neon-violet/30 bg-neon-violet/5 mb-4">
+            // SOBRE MÍ
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+            Conoce quién <span class="bg-gradient-to-r from-neon-cyan to-neon-violet bg-clip-text text-transparent">soy</span>
+          </h2>
+        </div>
+
+        <div class="grid lg:grid-cols-5 gap-12 items-start">
+          <!-- Left: About Text -->
+          <div class="lg:col-span-3 space-y-6" data-aos="fade-right" data-aos-delay="200">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-white/5">
+              <p class="text-gray-300 leading-relaxed text-base sm:text-lg mb-4">
+                Soy un estudiante apasionado de <span class="text-white font-semibold">Ingeniería de Sistemas</span> cursando el 9no semestre, con más de 4 años de experiencia práctica trabajando en entornos empresariales reales. Mi trayectoria combina el desarrollo de software con la optimización de procesos operativos.
+              </p>
+              <p class="text-gray-400 leading-relaxed text-sm sm:text-base mb-4">
+                En <span class="text-neon-cyan font-medium">Dr. Querales (Unidad Bariátrica)</span> he liderado la digitalización de datos de pacientes y la automatización de flujos de trabajo clínicos. En <span class="text-neon-violet font-medium">Tovarca C.A.</span>, gestiono la infraestructura tecnológica, el mantenimiento del sitio web corporativo y brindo soporte administrativo integral.
+              </p>
+              <p class="text-gray-400 leading-relaxed text-sm sm:text-base">
+                Mi enfoque se centra en entender los problemas desde su raíz, diseñar soluciones escalables y aplicar tecnología como palanca de transformación. Creo firmemente que la automatización inteligente y el software bien construido son las herramientas más poderosas para impulsar cualquier organización.
+              </p>
+            </div>
+
+            <!-- Highlight Badges -->
+            <div class="flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="400">
+              <div class="flex items-center gap-2 px-4 py-2 rounded-xl glass-card border border-white/5 text-sm">
+                <i data-lucide="target" class="w-4 h-4 text-neon-cyan"></i>
+                <span class="text-gray-300">Mentalidad Analítica</span>
+              </div>
+              <div class="flex items-center gap-2 px-4 py-2 rounded-xl glass-card border border-white/5 text-sm">
+                <i data-lucide="zap" class="w-4 h-4 text-neon-violet"></i>
+                <span class="text-gray-300">Automatización</span>
+              </div>
+              <div class="flex items-center gap-2 px-4 py-2 rounded-xl glass-card border border-white/5 text-sm">
+                <i data-lucide="code-2" class="w-4 h-4 text-neon-blue"></i>
+                <span class="text-gray-300">Desarrollo Web</span>
+              </div>
+              <div class="flex items-center gap-2 px-4 py-2 rounded-xl glass-card border border-white/5 text-sm">
+                <i data-lucide="settings" class="w-4 h-4 text-neon-cyan"></i>
+                <span class="text-gray-300">Soporte IT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Stats Cards -->
+          <div class="lg:col-span-2 grid grid-cols-2 gap-4" data-aos="fade-left" data-aos-delay="300">
+            <div class="glass-card rounded-2xl p-5 border border-white/5 text-center group hover:-translate-y-1 transition-transform duration-300">
+              <div class="text-3xl font-black text-neon-cyan mb-1">4+</div>
+              <div class="text-xs text-gray-500 uppercase tracking-wider">Años de Experiencia</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5 border border-white/5 text-center group hover:-translate-y-1 transition-transform duration-300">
+              <div class="text-3xl font-black text-neon-violet mb-1">9°</div>
+              <div class="text-xs text-gray-500 uppercase tracking-wider">Semestre</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5 border border-white/5 text-center group hover:-translate-y-1 transition-transform duration-300">
+              <div class="text-3xl font-black text-neon-blue mb-1">3</div>
+              <div class="text-xs text-gray-500 uppercase tracking-wider">Empresas</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5 border border-white/5 text-center group hover:-translate-y-1 transition-transform duration-300">
+              <div class="text-3xl font-black text-green-400 mb-1">∞</div>
+              <div class="text-xs text-gray-500 uppercase tracking-wider">Pasión por la Tech</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         PROJECTS SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section id="projects" class="relative py-24 sm:py-32">
+      <!-- Section BG Accent -->
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-neon-violet/[0.02] to-transparent"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <span class="inline-block px-4 py-1.5 rounded-full text-xs font-mono font-medium tracking-wider text-neon-cyan border border-neon-cyan/30 bg-neon-cyan/5 mb-4">
+            // PROYECTOS
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+            Proyectos <span class="bg-gradient-to-r from-neon-cyan to-neon-violet bg-clip-text text-transparent">Destacados</span>
+          </h2>
+          <p class="text-gray-500 mt-4 max-w-2xl mx-auto">Soluciones reales construidas con código, creatividad y enfoque en el usuario.</p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+          <!-- Project Card 1: Klibo -->
+          <div class="project-card group" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-card rounded-2xl overflow-hidden border border-white/5 hover:border-neon-cyan/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(0,240,255,0.15)]">
+              <!-- Project Mockup -->
+              <div class="relative h-48 sm:h-52 bg-gradient-to-br from-dark-700 to-dark-900 overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <!-- Simulated App Interface -->
+                  <div class="w-[85%] h-[80%] rounded-lg bg-dark-800 border border-white/10 overflow-hidden shadow-2xl">
+                    <div class="h-6 bg-dark-700 flex items-center px-3 gap-1.5">
+                      <div class="w-2 h-2 rounded-full bg-red-500/60"></div>
+                      <div class="w-2 h-2 rounded-full bg-yellow-500/60"></div>
+                      <div class="w-2 h-2 rounded-full bg-green-500/60"></div>
+                      <span class="ml-2 text-[10px] text-gray-500 font-mono">klibo.app</span>
+                    </div>
+                    <div class="p-3 space-y-2">
+                      <div class="h-3 bg-neon-cyan/20 rounded w-3/4"></div>
+                      <div class="grid grid-cols-3 gap-2 mt-3">
+                        <div class="h-16 rounded bg-neon-violet/10 border border-neon-violet/20"></div>
+                        <div class="h-16 rounded bg-neon-cyan/10 border border-neon-cyan/20"></div>
+                        <div class="h-16 rounded bg-neon-blue/10 border border-neon-blue/20"></div>
+                      </div>
+                      <div class="h-2 bg-white/5 rounded w-full mt-2"></div>
+                      <div class="h-2 bg-white/5 rounded w-2/3"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Floating Gradient -->
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+              </div>
+
+              <!-- Card Content -->
+              <div class="p-6">
+                <div class="flex items-start justify-between mb-3">
+                  <h3 class="text-lg font-bold text-white group-hover:text-neon-cyan transition-colors">Klibo</h3>
+                  <span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-green-500/10 text-green-400 border border-green-500/20">En Desarrollo</span>
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                  Agregador de video educativo que centraliza contenido de múltiples plataformas en una sola interfaz intuitiva para estudiantes y profesionales.
+                </p>
+                <!-- Tech Badges -->
+                <div class="flex flex-wrap gap-2 mb-5">
+                  <span class="tech-badge tech-badge-cyan">JavaScript</span>
+                  <span class="tech-badge tech-badge-violet">PHP</span>
+                  <span class="tech-badge tech-badge-blue">MySQL</span>
+                  <span class="tech-badge tech-badge-cyan">API REST</span>
+                </div>
+                <!-- Action Buttons -->
+                <div class="flex gap-3">
+                  <a href="#" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-neon-cyan/10 text-neon-cyan hover:bg-neon-cyan/20 transition-colors border border-neon-cyan/20">
+                    <i data-lucide="external-link" class="w-4 h-4"></i> Demo
+                  </a>
+                  <a href="#" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-white/5 text-gray-300 hover:bg-white/10 transition-colors border border-white/10">
+                    <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 2: Sistema de Gestión Web -->
+          <div class="project-card group" data-aos="fade-up" data-aos-delay="200">
+            <div class="glass-card rounded-2xl overflow-hidden border border-white/5 hover:border-neon-violet/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(139,92,246,0.15)]">
+              <!-- Project Mockup -->
+              <div class="relative h-48 sm:h-52 bg-gradient-to-br from-dark-700 to-dark-900 overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-[85%] h-[80%] rounded-lg bg-dark-800 border border-white/10 overflow-hidden shadow-2xl">
+                    <div class="h-6 bg-dark-700 flex items-center px-3 gap-1.5">
+                      <div class="w-2 h-2 rounded-full bg-red-500/60"></div>
+                      <div class="w-2 h-2 rounded-full bg-yellow-500/60"></div>
+                      <div class="w-2 h-2 rounded-full bg-green-500/60"></div>
+                      <span class="ml-2 text-[10px] text-gray-500 font-mono">gestión.dashboard</span>
+                    </div>
+                    <div class="flex h-[calc(100%-24px)]">
+                      <div class="w-12 bg-dark-700/50 p-2 space-y-2">
+                        <div class="w-full h-6 rounded bg-neon-violet/20"></div>
+                        <div class="w-full h-6 rounded bg-white/5"></div>
+                        <div class="w-full h-6 rounded bg-white/5"></div>
+                      </div>
+                      <div class="flex-1 p-3 space-y-2">
+                        <div class="flex gap-2">
+                          <div class="h-10 flex-1 rounded bg-neon-violet/10 border border-neon-violet/20"></div>
+                          <div class="h-10 flex-1 rounded bg-neon-cyan/10 border border-neon-cyan/20"></div>
+                        </div>
+                        <div class="h-20 rounded bg-white/5 border border-white/5"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+              </div>
+
+              <div class="p-6">
+                <div class="flex items-start justify-between mb-3">
+                  <h3 class="text-lg font-bold text-white group-hover:text-neon-violet transition-colors">Sistema de Gestión Web</h3>
+                  <span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-neon-violet/10 text-neon-violet border border-neon-violet/20">Producción</span>
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                  Plataforma de gestión administrativa desarrollada para Tovarca C.A. con dashboards interactivos y módulos de reporting automatizado.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-5">
+                  <span class="tech-badge tech-badge-violet">PHP</span>
+                  <span class="tech-badge tech-badge-blue">MySQL</span>
+                  <span class="tech-badge tech-badge-cyan">Tailwind CSS</span>
+                  <span class="tech-badge tech-badge-violet">AJAX</span>
+                </div>
+                <div class="flex gap-3">
+                  <a href="#" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-neon-violet/10 text-neon-violet hover:bg-neon-violet/20 transition-colors border border-neon-violet/20">
+                    <i data-lucide="external-link" class="w-4 h-4"></i> Demo
+                  </a>
+                  <a href="#" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-white/5 text-gray-300 hover:bg-white/10 transition-colors border border-white/10">
+                    <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 3: Digitalización Clínica -->
+          <div class="project-card group" data-aos="fade-up" data-aos-delay="300">
+            <div class="glass-card rounded-2xl overflow-hidden border border-white/5 hover:border-neon-blue/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)]">
+              <!-- Project Mockup -->
+              <div class="relative h-48 sm:h-52 bg-gradient-to-br from-dark-700 to-dark-900 overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-[85%] h-[80%] rounded-lg bg-dark-800 border border-white/10 overflow-hidden shadow-2xl">
+                    <div class="h-6 bg-dark-700 flex items-center px-3 gap-1.5">
+                      <div class="w-2 h-2 rounded-full bg-red-500/60"></div>
+                      <div class="w-2 h-2 rounded-full bg-yellow-500/60"></div>
+                      <div class="w-2 h-2 rounded-full bg-green-500/60"></div>
+                      <span class="ml-2 text-[10px] text-gray-500 font-mono">clinica.datos</span>
+                    </div>
+                    <div class="p-3 space-y-2">
+                      <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-neon-blue/20 border border-neon-blue/30"></div>
+                        <div class="space-y-1 flex-1">
+                          <div class="h-2 bg-white/10 rounded w-1/2"></div>
+                          <div class="h-2 bg-white/5 rounded w-1/3"></div>
+                        </div>
+                      </div>
+                      <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="h-14 rounded bg-neon-blue/10 border border-neon-blue/20 p-2">
+                          <div class="h-1.5 bg-neon-blue/30 rounded w-3/4 mb-1"></div>
+                          <div class="h-1.5 bg-white/5 rounded w-1/2"></div>
+                        </div>
+                        <div class="h-14 rounded bg-green-500/10 border border-green-500/20 p-2">
+                          <div class="h-1.5 bg-green-400/30 rounded w-3/4 mb-1"></div>
+                          <div class="h-1.5 bg-white/5 rounded w-1/2"></div>
+                        </div>
+                      </div>
+                      <div class="h-2 bg-white/5 rounded w-full mt-1"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+              </div>
+
+              <div class="p-6">
+                <div class="flex items-start justify-between mb-3">
+                  <h3 class="text-lg font-bold text-white group-hover:text-neon-blue transition-colors">Digitalización Clínica</h3>
+                  <span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-neon-blue/10 text-neon-blue border border-neon-blue/20">Activo</span>
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                  Sistema de digitalización y organización de datos de pacientes para la Unidad Bariátrica Dr. Querales, con automatización de reportes.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-5">
+                  <span class="tech-badge tech-badge-blue">Google Sheets</span>
+                  <span class="tech-badge tech-badge-cyan">Apps Script</span>
+                  <span class="tech-badge tech-badge-violet">Automatización</span>
+                </div>
+                <div class="flex gap-3">
+                  <a href="#" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-neon-blue/10 text-neon-blue hover:bg-neon-blue/20 transition-colors border border-neon-blue/20">
+                    <i data-lucide="external-link" class="w-4 h-4"></i> Demo
+                  </a>
+                  <a href="#" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-white/5 text-gray-300 hover:bg-white/10 transition-colors border border-white/10">
+                    <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SKILLS SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section id="skills" class="relative py-24 sm:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <span class="inline-block px-4 py-1.5 rounded-full text-xs font-mono font-medium tracking-wider text-neon-cyan border border-neon-cyan/30 bg-neon-cyan/5 mb-4">
+            // TECH STACK
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+            Habilidades <span class="bg-gradient-to-r from-neon-cyan to-neon-violet bg-clip-text text-transparent">Técnicas</span>
+          </h2>
+        </div>
+
+        <!-- Skills Categories -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+          <!-- Category 1: Desarrollo Web & Backend -->
+          <div class="glass-card rounded-2xl p-6 sm:p-8 border border-white/5 hover:border-neon-cyan/20 transition-all duration-500" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-neon-cyan/10 flex items-center justify-center">
+                <i data-lucide="code-2" class="w-6 h-6 text-neon-cyan"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Desarrollo Web & Backend</h3>
+                <p class="text-xs text-gray-500">Front-end · Back-end · Bases de Datos</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">HTML5 / CSS3</span>
+                  <span class="text-xs text-neon-cyan font-mono">90%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-cyan" data-width="90"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">JavaScript</span>
+                  <span class="text-xs text-neon-cyan font-mono">80%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-cyan" data-width="80"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">PHP</span>
+                  <span class="text-xs text-neon-cyan font-mono">75%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-cyan" data-width="75"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">Tailwind CSS</span>
+                  <span class="text-xs text-neon-cyan font-mono">85%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-cyan" data-width="85"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">MySQL</span>
+                  <span class="text-xs text-neon-cyan font-mono">70%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-cyan" data-width="70"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">Git / GitHub</span>
+                  <span class="text-xs text-neon-cyan font-mono">75%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-cyan" data-width="75"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2: Infraestructura & Soporte -->
+          <div class="glass-card rounded-2xl p-6 sm:p-8 border border-white/5 hover:border-neon-violet/20 transition-all duration-500" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-neon-violet/10 flex items-center justify-center">
+                <i data-lucide="server" class="w-6 h-6 text-neon-violet"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Infraestructura & Soporte</h3>
+                <p class="text-xs text-gray-500">Hardware · Redes · Sistemas</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">Mant. de Hardware</span>
+                  <span class="text-xs text-neon-violet font-mono">85%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-violet" data-width="85"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">Windows / Linux</span>
+                  <span class="text-xs text-neon-violet font-mono">80%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-violet" data-width="80"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">Redes LAN</span>
+                  <span class="text-xs text-neon-violet font-mono">70%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-violet" data-width="70"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">Diagnóstico de Fallas</span>
+                  <span class="text-xs text-neon-violet font-mono">85%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-violet" data-width="85"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 3: Productividad & IA -->
+          <div class="glass-card rounded-2xl p-6 sm:p-8 border border-white/5 hover:border-neon-blue/20 transition-all duration-500 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-neon-blue/10 flex items-center justify-center">
+                <i data-lucide="sparkles" class="w-6 h-6 text-neon-blue"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Productividad & IA</h3>
+                <p class="text-xs text-gray-500">Herramientas · Workflows · AI</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">Google Workspace</span>
+                  <span class="text-xs text-neon-blue font-mono">90%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-blue" data-width="90"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">Notion</span>
+                  <span class="text-xs text-neon-blue font-mono">85%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-blue" data-width="85"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">IA Generativa</span>
+                  <span class="text-xs text-neon-blue font-mono">80%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-blue" data-width="80"></div></div>
+              </div>
+              <div class="skill-bar-container">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm text-gray-300 font-medium">Flujos Automatizados</span>
+                  <span class="text-xs text-neon-blue font-mono">75%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill skill-bar-blue" data-width="75"></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         EXPERIENCE SECTION (TIMELINE)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section id="experience" class="relative py-24 sm:py-32">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-neon-cyan/[0.02] to-transparent"></div>
+
+      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <span class="inline-block px-4 py-1.5 rounded-full text-xs font-mono font-medium tracking-wider text-neon-violet border border-neon-violet/30 bg-neon-violet/5 mb-4">
+            // EXPERIENCIA
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+            Trayectoria <span class="bg-gradient-to-r from-neon-cyan to-neon-violet bg-clip-text text-transparent">Profesional</span>
+          </h2>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative">
+          <!-- Timeline Line -->
+          <div class="absolute left-4 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-neon-cyan via-neon-violet to-neon-blue"></div>
+
+          <!-- Timeline Item 1 -->
+          <div class="relative pl-12 sm:pl-20 pb-12" data-aos="fade-up" data-aos-delay="100">
+            <!-- Dot -->
+            <div class="absolute left-[9px] sm:left-[25px] top-1 w-7 h-7 rounded-full bg-dark-900 border-2 border-neon-cyan flex items-center justify-center">
+              <div class="w-3 h-3 rounded-full bg-neon-cyan animate-pulse"></div>
+            </div>
+            <!-- Card -->
+            <div class="glass-card rounded-2xl p-6 border border-white/5 hover:border-neon-cyan/20 transition-all duration-300 group hover:-translate-y-1">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-2">
+                <h3 class="text-lg font-bold text-white group-hover:text-neon-cyan transition-colors">Dr. Querales — Unidad Bariátrica</h3>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20 whitespace-nowrap">
+                  <i data-lucide="calendar" class="w-3 h-3"></i> 2023 — 2026
+                </span>
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">
+                Optimización de flujos de trabajo clínicos, digitalización de datos de pacientes bariátricos y automatización de reportes médicos. Implementación de herramientas digitales para mejorar la eficiencia operativa de la unidad.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-neon-cyan/5 text-neon-cyan/80 border border-neon-cyan/10">Digitalización</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-neon-cyan/5 text-neon-cyan/80 border border-neon-cyan/10">Automatización</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-neon-cyan/5 text-neon-cyan/80 border border-neon-cyan/10">Google Workspace</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="relative pl-12 sm:pl-20 pb-12" data-aos="fade-up" data-aos-delay="200">
+            <div class="absolute left-[9px] sm:left-[25px] top-1 w-7 h-7 rounded-full bg-dark-900 border-2 border-neon-violet flex items-center justify-center">
+              <div class="w-3 h-3 rounded-full bg-neon-violet animate-pulse"></div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 border border-white/5 hover:border-neon-violet/20 transition-all duration-300 group hover:-translate-y-1">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-2">
+                <h3 class="text-lg font-bold text-white group-hover:text-neon-violet transition-colors">Tovarca C.A.</h3>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-neon-violet/10 text-neon-violet border border-neon-violet/20 whitespace-nowrap">
+                  <i data-lucide="calendar" class="w-3 h-3"></i> 2022 — 2026
+                </span>
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">
+                Gestión administrativa integral, soporte técnico interno y mantenimiento del sitio web corporativo. Coordinación de procesos operativos y apoyo en la infraestructura tecnológica de la empresa.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-neon-violet/5 text-neon-violet/80 border border-neon-violet/10">Administración</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-neon-violet/5 text-neon-violet/80 border border-neon-violet/10">Web</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-neon-violet/5 text-neon-violet/80 border border-neon-violet/10">Soporte IT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="relative pl-12 sm:pl-20" data-aos="fade-up" data-aos-delay="300">
+            <div class="absolute left-[9px] sm:left-[25px] top-1 w-7 h-7 rounded-full bg-dark-900 border-2 border-neon-blue flex items-center justify-center">
+              <div class="w-3 h-3 rounded-full bg-neon-blue animate-pulse"></div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 border border-white/5 hover:border-neon-blue/20 transition-all duration-300 group hover:-translate-y-1">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-2">
+                <h3 class="text-lg font-bold text-white group-hover:text-neon-blue transition-colors">Servicios Digitales Independientes</h3>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-neon-blue/10 text-neon-blue border border-neon-blue/20 whitespace-nowrap">
+                  <i data-lucide="calendar" class="w-3 h-3"></i> 2021 — Presente
+                </span>
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">
+                Ofrecimiento de servicios de soporte técnico, desarrollo de software a medida y consultoría tecnológica para clientes independientes. Resolución de problemas de infraestructura y creación de soluciones web personalizadas.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-neon-blue/5 text-neon-blue/80 border border-neon-blue/10">Freelance</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-neon-blue/5 text-neon-blue/80 border border-neon-blue/10">Desarrollo Web</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-neon-blue/5 text-neon-blue/80 border border-neon-blue/10">Soporte Técnico</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         CONTACT SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section id="contact" class="relative py-24 sm:py-32">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <span class="inline-block px-4 py-1.5 rounded-full text-xs font-mono font-medium tracking-wider text-neon-cyan border border-neon-cyan/30 bg-neon-cyan/5 mb-4">
+            // CONTACTO
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            ¿Tienes un proyecto <span class="bg-gradient-to-r from-neon-cyan to-neon-violet bg-clip-text text-transparent">en mente</span>?
+          </h2>
+          <p class="text-gray-500 max-w-xl mx-auto">Estoy abierto a nuevas oportunidades, colaboraciones y proyectos. ¡Hablemos!</p>
+        </div>
+
+        <!-- Contact Card -->
+        <div class="glass-card rounded-3xl p-8 sm:p-10 border border-white/5 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+          <!-- Decorative Background -->
+          <div class="absolute top-0 right-0 w-64 h-64 bg-neon-cyan/5 rounded-full blur-[80px]"></div>
+          <div class="absolute bottom-0 left-0 w-64 h-64 bg-neon-violet/5 rounded-full blur-[80px]"></div>
+
+          <div class="relative grid sm:grid-cols-2 gap-6">
+            <!-- Email -->
+            <a href="mailto:Jezrael1224@gmail.com" class="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-neon-cyan/30 hover:bg-neon-cyan/5 transition-all duration-300 group">
+              <div class="w-12 h-12 rounded-xl bg-neon-cyan/10 flex items-center justify-center flex-shrink-0 group-hover:bg-neon-cyan/20 transition-colors">
+                <i data-lucide="mail" class="w-5 h-5 text-neon-cyan"></i>
+              </div>
+              <div class="min-w-0">
+                <p class="text-xs text-gray-500 uppercase tracking-wider mb-0.5">Email</p>
+                <p class="text-sm text-white font-medium truncate">Jezrael1224@gmail.com</p>
+              </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/jezrael-tovar" target="_blank" rel="noopener" class="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-neon-blue/30 hover:bg-neon-blue/5 transition-all duration-300 group">
+              <div class="w-12 h-12 rounded-xl bg-neon-blue/10 flex items-center justify-center flex-shrink-0 group-hover:bg-neon-blue/20 transition-colors">
+                <i data-lucide="linkedin" class="w-5 h-5 text-neon-blue"></i>
+              </div>
+              <div class="min-w-0">
+                <p class="text-xs text-gray-500 uppercase tracking-wider mb-0.5">LinkedIn</p>
+                <p class="text-sm text-white font-medium truncate">linkedin.com/in/jezrael-tovar</p>
+              </div>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/jezrael" target="_blank" rel="noopener" class="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-gray-500/30 hover:bg-gray-500/5 transition-all duration-300 group">
+              <div class="w-12 h-12 rounded-xl bg-gray-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-500/20 transition-colors">
+                <i data-lucide="github" class="w-5 h-5 text-gray-400"></i>
+              </div>
+              <div class="min-w-0">
+                <p class="text-xs text-gray-500 uppercase tracking-wider mb-0.5">GitHub</p>
+                <p class="text-sm text-white font-medium truncate">github.com/jezrael</p>
+              </div>
+            </a>
+
+            <!-- WhatsApp -->
+            <a href="https://wa.me/584120000000?text=Hola%20Jezrael%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" rel="noopener" class="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-green-500/30 hover:bg-green-500/5 transition-all duration-300 group">
+              <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-green-500/20 transition-colors">
+                <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <p class="text-xs text-gray-500 uppercase tracking-wider mb-0.5">WhatsApp</p>
+                <p class="text-sm text-white font-medium">Chat directo</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Big CTA -->
+          <div class="mt-8 pt-8 border-t border-white/5 text-center">
+            <a href="https://wa.me/584120000000?text=Hola%20Jezrael%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" rel="noopener" class="btn-primary inline-flex text-lg px-8 py-4">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+              <span>Hablemos sobre tu proyecto</span>
+              <div class="btn-shine"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════════ -->
+  <footer class="relative border-t border-white/5 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-md bg-gradient-to-br from-neon-cyan to-neon-violet flex items-center justify-center font-bold text-dark-900 text-xs">JT</div>
+          <span class="text-sm text-gray-500">
+            © <span id="current-year"></span> Jezrael Tovar. Todos los derechos reservados.
+          </span>
+        </div>
+        <div class="flex items-center gap-1 text-sm text-gray-600">
+          <span>Hecho con</span>
+          <i data-lucide="heart" class="w-4 h-4 text-red-500 fill-red-500"></i>
+          <span>y mucho</span>
+          <i data-lucide="coffee" class="w-4 h-4 text-amber-500"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════════════════════════ -->
+  <!-- AOS Library -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <!-- Main JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>
